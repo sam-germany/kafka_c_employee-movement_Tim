@@ -29,24 +29,18 @@ public class EmployeeAssignmentPollingAction {
 		transactionRepository.deleteById(id);
 	}
 
-
 	public void deleteById(long id) {
 		transactionRepository.deleteById(id);
 	}
-
-
 
 	public Optional<EmployeeAssignment> findById(long id) {
 		return transactionRepository.findById(id);
 	}
 
-
-
 	@Transactional
 	public EmployeeAssignment insert(EmployeeAssignment entity) throws JsonProcessingException {
 		return transactionRepository.save(entity);
 	}
-
 
 
 	public void insertIntoOutbox(Object entity, String transactionType) throws JsonProcessingException {
@@ -59,5 +53,4 @@ public class EmployeeAssignmentPollingAction {
 
 		outboxRepository.save(outboxPolling);
 	}
-
 }

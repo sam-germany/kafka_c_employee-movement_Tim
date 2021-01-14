@@ -1,13 +1,7 @@
 package com.course.microservice.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class EmployeeAssignment {
@@ -31,16 +25,23 @@ public class EmployeeAssignment {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+
 		EmployeeAssignment other = (EmployeeAssignment) obj;
-		if (assignmentId != other.assignmentId)
-			return false;
+
+		if (assignmentId != other.assignmentId) return false;
+
 		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (assignmentId ^ (assignmentId >>> 32));
+		return result;
 	}
 
 	public long getAssignmentId() {
@@ -63,13 +64,7 @@ public class EmployeeAssignment {
 		return position;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (assignmentId ^ (assignmentId >>> 32));
-		return result;
-	}
+
 
 	public void setAssignmentId(long assignmentId) {
 		this.assignmentId = assignmentId;
